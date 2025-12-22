@@ -46,3 +46,5 @@ int sum(int count, ...) {
 }
 
 // Usage: sum(3, 10, 20, 30) returns 60 the first argument in this case is the number of arguments that are going to sum up 
+
+Project Layout:

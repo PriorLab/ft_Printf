@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_unsig_num.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alemigue <alemigue@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 16:56:43 by alemigue          #+#    #+#             */
-/*   Updated: 2025/12/22 14:35:32 by alemigue         ###   ########.fr       */
+/*   Created: 2025/12/22 16:56:27 by alemigue          #+#    #+#             */
+/*   Updated: 2025/12/22 17:23:51 by alemigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     print_char(char c)
+int print_unsig_num(unsigned long i)
 {
-    ft_putchar_fd(c, 1);
-    return (1);
+    int w;
+    int rec;
+    
+    
+    if (i >= 10)
+    {
+        rec = print_unsig_num(i / 10);
+        if (rec == -1)
+            return (-1);
+        w = print_char('0' + i % 10);
+        if (w == -1)
+            return (-1);
+        return (rec + 1);
+    }
+    if (print_char('0' + i) == -1)
+        return (-1);
+    return 1;
 }

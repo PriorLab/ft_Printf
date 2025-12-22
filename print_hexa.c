@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_hexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alemigue <alemigue@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 16:56:43 by alemigue          #+#    #+#             */
-/*   Updated: 2025/12/22 14:35:32 by alemigue         ###   ########.fr       */
+/*   Created: 2025/12/22 17:52:25 by alemigue          #+#    #+#             */
+/*   Updated: 2025/12/22 18:07:02 by alemigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     print_char(char c)
+int	print_hex(unsigned long n, int uppercase)
 {
-    ft_putchar_fd(c, 1);
-    return (1);
+	char	*base;
+	int		rec;
+	int		w;
+
+	if (uppercase)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+
+	if (n >= 16)
+	{
+		rec = print_hex(n / 16, uppercase);
+		if (rec == -1)
+			return (-1);
+	}
+	w = print_char(base[n % 16]);
+	if (w == -1)
+		return (-1);
+	if (n >= 16)
+		return (rec + 1);
+	return (1);
 }
