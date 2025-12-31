@@ -6,7 +6,7 @@
 /*   By: alemigue <alemigue@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 17:52:25 by alemigue          #+#    #+#             */
-/*   Updated: 2025/12/22 18:07:02 by alemigue         ###   ########.fr       */
+/*   Updated: 2025/12/31 12:06:32 by alemigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	print_hex(unsigned long n, int uppercase)
 		base = "0123456789ABCDEF";
 	else
 		base = "0123456789abcdef";
-
 	if (n >= 16)
 	{
 		rec = print_hex(n / 16, uppercase);

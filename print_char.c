@@ -6,14 +6,15 @@
 /*   By: alemigue <alemigue@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 16:56:43 by alemigue          #+#    #+#             */
-/*   Updated: 2025/12/22 14:35:32 by alemigue         ###   ########.fr       */
+/*   Updated: 2025/12/31 12:43:51 by alemigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     print_char(char c)
+int	print_char(char c)
 {
-    ft_putchar_fd(c, 1);
-    return (1);
+	if (write(1, &c, 1) != 1)
+		return (-1);
+	return (1);
 }

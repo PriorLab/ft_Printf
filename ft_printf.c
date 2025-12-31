@@ -6,7 +6,7 @@
 /*   By: alemigue <alemigue@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:40:38 by alemigue          #+#    #+#             */
-/*   Updated: 2025/12/22 18:02:56 by alemigue         ###   ########.fr       */
+/*   Updated: 2025/12/31 12:54:28 by alemigue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ static int	check_type(const char *input, va_list	*args)
 	if (*input == 'c')
 		i += print_char(va_arg(*args, int));
 	else if (*input == 's')
-		i += print_string(va_arg(*args,char *));
+		i += print_string(va_arg(*args, char *));
 	else if (*input == 'p')
 		i += print_pointer(va_arg(*args, void *));
 	else if (*input == 'd' || *input == 'i')
 		i += print_num(va_arg(*args, int));
 	else if (*input == 'u')
-		i += print_unsigned_int(va_arg(*args, unsigned int));
+		i += print_unsig_num((unsigned long)va_arg(*args, unsigned int));
 	else if (*input == 'x')
-		i += print_hex(va_arg(*args, unsigned int), 0);
+		i += print_hex((unsigned long)va_arg(*args, unsigned int), 0);
 	else if (*input == 'X')
-		i += print_hex(va_arg(*args, unsigned int), 1);
+		i += print_hex((unsigned long)va_arg(*args, unsigned int), 1);
 	else if (*input == '%')
 		i += print_char('%');
 	else
@@ -41,7 +41,7 @@ static int	check_type(const char *input, va_list	*args)
 int	ft_printf(const char *input, ...)
 {
 	va_list		args;
-	int	i;
+	int			i;
 
 	if (!input)
 		return (-1);
@@ -52,7 +52,7 @@ int	ft_printf(const char *input, ...)
 		if (*input == '%' && *(input + 1))
 		{
 			input++;
-				i += check_type(input, va_arg(args, void *));
+			i += check_type(input, &args);
 		}
 		else
 			i += print_char(*input);
